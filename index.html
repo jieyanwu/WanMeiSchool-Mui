@@ -15,7 +15,7 @@
 <body>
 	
 	<header class="mui-bar mui-bar-nav">
-		<h1 class="mui-title">标题</h1>
+		<h1 class="mui-title" id="title">标题</h1>
 	</header>
 	<div class="mui-content">
 		
@@ -40,6 +40,7 @@
 	</nav>
 	<script type="text/javascript" charset="utf-8">
 	  	mui.init();
+		//Tabbar方法一
 		mui.plusReady(function(){
 			console.log("plus is Radey");
 			var subPages = ['pages/1.html','pages/2.html','pages/3.html','pages/4.html']
@@ -59,6 +60,28 @@
 				console.log(href);
 				plus.webview.show(subPages[href])
 			})
+			//tabbar结束
+			
+			// //判断首次启动
+			// var No1 = plus.storage.getItem('No1');
+			// console.log(No1);
+			// if(!No1){
+			// 	console.log('未欢迎',No1);
+			// 	mui.openWindow('hello.html')
+			// }
+			
+			//清除No1
+			mui('.mui-bar').on('tap','h1',function(){
+				console.log('清除No1');
+				plus.storage.clear()
+				mui.openWindow({
+					url:'hello.html',
+					id:'hello',
+					createNew:true
+				})
+				
+			})
+			
 		})
 	</script>
 </body>

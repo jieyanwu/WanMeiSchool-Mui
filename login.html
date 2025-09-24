@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<style>
+			.mui-content{
+				height: 100vh;
+				width: 100vw;
+				background: url(./img/8.webp) no-repeat center/cover;
+				/* position: fixed; */
+			}
+			.ipSet{
+				position: absolute;
+				right: 12px;
+				top: 6px;
+				background: #eec6a4;
+				padding: 3px 6px;
+				border-radius: 12px;
+				height: 4vh;
+				width: 18vw;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 13px;
+				color: #fff;
+				font-weight: 800;
+			}
+			.mui-content{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding-top: 125px;
+			}
+			.icon{
+				height: 100px;
+				width: 100px;
+				overflow: hidden;
+				border-radius: 12px;
+				margin-bottom: 65px;
+				box-shadow: 0px 0px 20px #dddddd;
+				border: 0.1px solid #eee;
+			}
+			.icon img{
+				height: 100%;
+				width: 100%;
+			}
+			
+			.loginForm{
+				color: #fff;
+			}
+			.input{
+				font-size: 20px;
+				font-weight: 600;
+			}
+			.pl{
+				background: rgba(249, 249, 249, 0.3) !important;
+				backdrop-filter: blur(12px);
+				line-height: 130px;
+				
+			}
+			.login{
+				transform: scale(0.8);
+				margin-top: 85px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="ipSet">
+				<span>IP配置</span>
+			</div>
+			<div class="icon">
+				<img src="./img/10.webp" alt="" />
+			</div>
+			<form class="loginForm">
+				<div class="usernames input">
+					<label>用户名</label>
+					<input type="text" placeholder="用户名" class="pl uninput">
+				</div>
+				<div class="pwd input">
+					<label>密码</label>
+					<input type="password" placeholder="密码" class="pl pwdput">
+				</div>
+				<div class="kuan">
+					<input name="Checkbox" type="checkbox" class="ck">
+					<label>阅读并同意条款协议</label>
+				</div>
+				<button type="button" class="mui-btn mui-btn-block mui-btn-block login">按钮</button>
+			</form>
+		</div>
+		
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			// stroage值查询函数
+			function getAllStorage() {
+			    var len = plus.storage.getLength();
+			    var obj = {};
+			    for (var i = 0; i < len; i++) {
+			        var key = plus.storage.key(i);
+			        obj[key] = plus.storage.getItem(key);
+			    }
+			    return obj;
+			}
+			
+			
+			mui.plusReady(function () {
+			    //判断首次启动
+			    var No1 = plus.storage.getItem('No1');
+			    console.log(No1);
+			    if(!No1){
+			    	// console.log('未欢迎'+No1);
+			    	mui.openWindow('hello.html')
+			    }
+				else{
+					console.log("已设置storage值："+No1);
+				}
+			    //清除No1
+			    mui('.mui-bar').on('tap','h1',function(){
+			    	console.log('清除No1');
+			    	plus.storage.setItem('No1','');
+			    	mui.openWindow({
+			    		url:'hello.html',
+			    		id:'hello',
+			    		createNew:true
+			    	})
+			    	
+			    });
+				// storage值查询
+				var all = getAllStorage();
+				console.log('当前所有 storage →', JSON.stringify(all));
+				
+				//ip配置弹窗
+				mui('.mui-content').on('tap',".ipSet",function(){
+					console.log('okkkk');
+					mui.prompt('输入官方文档的IP地址','Eg:http://192.168.110.1:8080','配置服务器IP',['取消','确认'],function (e) {
+						console.log("e: " + JSON.stringify(e));
+						plus.storage.setItem('BaseUrl',e.value)
+						a = plus.storage.getItem('BaseUrl');
+						console.log(a);
+					},'propup')
+				});
+				Burl = plus.storage.getItem('BaseUrl');
+				//login函数
+				mui('.loginForm').on('tap',".login",function(){
+					var usme = document.querySelector(".uninput").value;
+					var pard = document.querySelector(".pwdput").value;
+					var check = document.querySelector('.ck').checked;
+					console.log(check);
+					if (Burl && usme && pard &&check == true) {
+						data = {
+							'username':usme,
+							'password':pard
+						}
+						url = Burl+'/login';
+						console.log(url);
+						mui.ajax(url,{
+							data:JSON.stringify(data),
+							headers:{
+								'Content-Type':'application/json'
+							},
+							dataType:'json',//服务器返回json格式数据
+							type:'post',//HTTP请求类型
+							timeout:10000,//超时时间设置为10秒；
+							success:function(data){
+								console.log("data: " + JSON.stringify(data));
+								plus.storage.setItem('token',data.token);
+								mui.openWindow('index.html')
+							},
+							error:function(xhr,type,errorThrown){
+								console.log('login界面网络获取token,函数失败');
+							}
+						});
+					} else{
+						console.log('有值未填写');
+						mui.alert('请检查ip配置，用户名，密码并同意条款','未填写所有值','关闭',function (e) {
+						   e.index
+						},'popup')
+					}
+				});
+				url = Burl+'/protected';
+				token = plus.storage.getItem('token');
+				mui.ajax(url,{
+					headers:{
+						"Authorization":`Bearer ${token}`
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						console.log('登录信息可用，跳转到index');
+						mui.openWindow('index.html');
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert('状态失效，请重新登录','用户退出登录','重新登录',function (e) {
+						   console.log('用户点击重新登录');
+						},'div')
+					}
+				});
+				
+			})
+		</script>
+	</body>
+
+</html>

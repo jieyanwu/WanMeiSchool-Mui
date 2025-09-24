@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<style>
+			.img{
+				position: fixed;
+				background: url(./img/hello.webp) no-repeat center/cover;
+				height: 100vh;
+				width: 100vw;
+			}
+			.btn{
+				position: absolute;
+				bottom: 50px;
+				background: #ffaa7f;
+				border: none;
+				border-radius: 12px;
+				transform: scale(0.75);
+			}
+			.top{
+				color: aliceblue;
+				position: absolute;
+				right: 10px;
+				display: flex;
+				align-items: center;
+			}
+			.top span{
+				font-size: 18px;
+			}
+			.top button{
+				transform: scale(0.7);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <img src="./img/hello.webps" alt="欢迎" class="img" /> -->
+		<div class="img"></div>
+		<div class="div">
+			<div class="top">
+				<span class="time">3</span>
+				<button type="button" class="mui-btn mui-btn-blue skip">跳过</button>
+			</div>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block btn skip">开始体验</button>
+		</div>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function () {
+				var adTime = document.querySelector('.time').textContent;
+				console.log(adTime);
+			    for (let i = 0; i < adTime; i++) {
+					let sleep = i + 1
+					let time = adTime-i
+			    	setTimeout(function(){
+						console.log('倒计时'+time);
+						document.querySelector(".time").textContent = time
+						if(time <= 1){
+							console.log('广告结束');
+							plus.storage.setItem('No1',"has")
+							console.log('已设置storage');
+							plus.webview.currentWebview().close()
+						}
+					},sleep*1000)
+			    };
+				
+				mui('body').on('tap','.skip',function(){
+					console.log('登录按钮事件点击成功');
+					mui.openWindow('login.html')
+				})
+				
+			})
+		</script>
+	</body>
+
+</html>
