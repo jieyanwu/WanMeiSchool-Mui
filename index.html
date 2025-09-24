@@ -4,406 +4,62 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    
-	<style lang="scss">
+	<link href="css/mui.min.css" rel="stylesheet"/>
+    <script src="js/mui.min.js"></script>
+	<style>
 		*{
 			touch-action: pan-y;
-		}
-		body{
-			--avater-size:25px;
-			--l-width:13px;
-			--font-color:#ffffff;
-			
-		}
-		.mui-content{
-			margin-bottom: 50px;
-		}
-		.tp{
-			display: flex;
-			justify-content: space-between;
-			/* background: linear-gradient(to top,rgba(255, 255, 255, 0.3) 80%,#ffffff); */
-			background: rgba(255, 255, 255, 0.3);
-			box-shadow: none;
-		}
-		.left{
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: wheat;
-			border: solid 1px #d6d6d6;
-			padding: 0 8px;
-			border-radius: 10px;
-			transform: scale(0.7);
-		}
-		.mui-icon-search{
-			transform: scale(0.8);
-		}
-		.scan{
-			font-size: 12px;
-		}
-		.right{
-			padding: 0 12px;
-			transform: scale(0.7);
-			border-radius: 12px;
-			background-color: antiquewhite;
-		}
-		.right span{
-			/* background-color: aliceblue; */
-			transform: scale(0.8);
-			padding: 3px 19px;
-		}
-		.right span:nth-child(1):after,
-		.right span:nth-child(2):after{
-			content: "|";
-			margin-left: 8px;
-		}
-		.card-box{
-			margin-top: 12px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: var(--font-color);
-		}
-		.card{
-			position: relative;
-			display: flex;
-			height: 190px;
-			width: 340px;
-			background-color: aqua;
-			background: url(./img/7.webp) no-repeat center;
-			background-size: contain;
-			border-radius: 12px;
-			padding: 10px 23px;
-		}
-		.item-ab{
-			position: absolute;
-			left: var(--l-width);
-			/* background: #000; */
-		}
-		.left-top{
-			display: flex;
-			align-items: center;
-			/* background-color: antiquewhite; */
-			/* margin-top: 12px; */
-		}
-		.avater-box{
-			height: var(--avater-size);
-			width: var(--avater-size);
-			overflow: hidden;
-			border-radius: 50%;
-		}
-		.avater-box img{
-			height: 100%;
-			width: 100%;
-			/* object-fit: none; */
-		}
-		.info{
-			margin-left: 6px;
-		}
-		.info .school{
-			font-size: 10px;
-			font-weight: 700;
-			line-height: normal;
-		}
-		.s-id{
-			line-height: normal;
-			font-size: 6px;
-			
-		}
-		.cyifu{
-			height: var(--avater-size);
-			width: var(--avater-size);
-			overflow: hidden;
-			position: absolute;
-			right: var(--l-width);
-		}
-		.price{
-			position: absolute;
-			bottom: var(--l-width);
-			left: var(--l-width);
-		}
-		.price .m-info{
-			font-size: 8px;
-			
-		}
-		.price .money{
-			margin-left: 4px;
-			margin-right: 4px;
-			font-family: cursive;
-			font-weight: 700;
-		}
-		.price .money .yuan{
-			font-size: 8px;
-			font-weight: 100;
-		}
-		
-		
-		.btn-list{
-			margin-top: 12px;
-			display: grid;
-			grid-template-columns: repeat(auto-fill,minmax(80px,1fr));
-			gap: 12px;
-			justify-items: center;
-		}
-		.btn-list .item{
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			
-		}
-		.btn-list .item .imgbox{
-			height: 45px;
-			width: 45px;
-			overflow: hidden;
-			border-radius: 50%;
-		}
-		.btn-list .item .imgbox img{
-			height: 100%;
-			width: 100%;
-		}
-		.btn-list .item span{
-			font-size: 12px;
-		}
-		.ad{
-			height: 100px;
-			border-radius: 12px;
-			width: 95%;
-			margin-left:auto;
-			margin-right: auto;
 		}
 	</style>
 </head>
 <body>
-	<header class="mui-bar mui-bar-nav tp">
-		<div class="left">
-			<span class="mui-icon mui-icon-search"></span><span class="scan">扫一扫</span>
-		</div>
-		<div class="right">
-			<span class="mui-icon mui-icon-home"></span>
-			<span class="mui-icon mui-icon-arrowdown"></span>
-			<span class="mui-icon mui-icon-back"></span>
-		</div>
-	</header>
 	
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">标题</h1>
+	</header>
 	<div class="mui-content">
-		<div class="mui-scroll-wrapper" id="refreshWrapper">
-			<div class="mui-scroll">
-				<div class="card-box">
-					<div class="card">
-						<div class="item-ab">
-							<div class="left-top">
-								<div class="avater-box">
-									<img src="./img/4.webp" alt="avater" />
-								</div>
-								<div class="info">
-									<span class="school">笑笑笑笑笑笑笑笑笑</span>
-									<div class="s-id">
-										<span>name</span>
-										<span class="id-num">22222222222222222</span>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						<div class="yifu">
-							<img src="./img/icon2.png" alt="" class="cyifu" />
-						</div>
-						<div class="price">
-							<span class="m-info">校园卡余额 ></span>
-							<div class="money"><span class="num">10.2</span><span class="yuan">元</span></div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn-list">
-					<div class="item">
-						<div class="imgbox">
-							<img src="./img/2.webp" alt="" />
-						</div>
-						<span>人脸识别</span>
-					</div>
-					<div class="item">
-						<div class="imgbox">
-							<img src="./img/icon1.png" alt="" />
-						</div>
-						<span>人脸识</span>
-					</div>
-					<div class="item">
-						<div class="imgbox">
-							<img src="./img/icon1.png" alt="" />
-						</div>
-						<span>人脸</span>
-					</div>
-				</div>
-				
-				<div id="slider" class="mui-slider ad" >
-				  <div class="mui-slider-group mui-slider-loop">
-					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-					<div class="mui-slider-item mui-slider-item-duplicate">
-					  <a href="#">
-						<img src="./img/2.webp">
-					  </a>
-					</div>
-					<!-- 第一张 -->
-					<div class="mui-slider-item">
-					  <a href="#">
-						<img src="img/1.webp">
-					  </a>
-					</div>
-					<!-- 第2张 -->
-					<div class="mui-slider-item">
-					  <a href="#">
-						<img src="./img/2.webp">
-					  </a>
-					</div>
-					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-					<div class="mui-slider-item mui-slider-item-duplicate">
-					  <a href="#">
-						<img src="./img/1.webp">
-					  </a>
-					</div>
-				  </div>
-				  <div class="mui-slider-indicator">
-					<div class="mui-indicator mui-active"></div>
-					<div class="mui-indicator"></div>
-				  </div>
-				</div>
-				
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-right" src="img/1.webp">
-							<div class="mui-media-body">
-								幸福
-								<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-			
-		</div>
-		
 		
 	</div>
 	<nav class="mui-bar mui-bar-tab">
-		<a class="mui-tab-item mui-active">
+		<a class="mui-tab-item mui-active" href="1">
 			<span class="mui-icon mui-icon-home"></span>
 			<span class="mui-tab-label">首页</span>
 		</a>
-		<a class="mui-tab-item" href="pages/my.html">
+		<a class="mui-tab-item"href="2">
 			<span class="mui-icon mui-icon-phone"></span>
 			<span class="mui-tab-label">电话</span>
 		</a>
-		<a class="mui-tab-item">
+		<a class="mui-tab-item" href="3">
+			<span class="mui-icon mui-icon-email"></span>
+			<span class="mui-tab-label">邮件</span>
+		</a>
+		<a class="mui-tab-item" href="4">
 			<span class="mui-icon mui-icon-gear"></span>
 			<span class="mui-tab-label">设置</span>
 		</a>
 	</nav>
-	
-	<script src="./js/mui.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
-	  mui('#slider').slider({ interval: 3000 });
-	 function fakedata(){
-			// 1️⃣ 假数据池
-			const fakePool = [
-			  {
-				img: 'img/1.webp',
-				title: '幸福',
-				desc: '能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？'
-			  },
-			  {
-				img: 'img/2.webp',
-				title: '周末',
-				desc: '周末想睡个懒觉，结果早上六点被快递电话叫醒。'
-			  },
-			  {
-				img: 'img/3.webp',
-				title: '加班',
-				desc: '凌晨两点的办公室，只有空调和泡面陪我。'
-			  },
-			  {
-				img: 'img/4.webp',
-				title: '旅行',
-				desc: '说走就走的旅行，结果忘带身份证。'
-			  },
-			  {
-				img: 'img/5.webp',
-				title: '健身',
-				desc: '立了 flag 要瘦 10 斤，目前已瘦 0.5 斤。'
-			  }
-			];
-			
-			// 2️⃣ 随机取一条
-		  a = fakePool[Math.floor(Math.random() * fakePool.length)];
-		  // console.log(a);
-		  return(a)
-		};
-	  mui.ready(function(){
-		  mui.init({
-		    pullRefresh : {
-		      container:'#refreshWrapper',
-			  
-		      down : {
-		        callback :function(){
-		  				const that = this;
-		  				setTimeout(function(){
-		  					console.log("down");
-		  					document.querySelector(".mui-table-view").innerHTML += 
-		  					`
-		  					<li class="mui-table-view-cell mui-media">
-		  						<a href="javascript:;">
-		  							<img class="mui-media-object mui-pull-right" src="img/1.webp">
-		  							<div class="mui-media-body">
-		  								幸福
-		  								<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-		  							</div>
-		  						</a>
-		  					</li>
-		  					`;
-		  					that.endPulldownToRefresh();
-		  				},500)
-		  			}
-		      },
-		      up : {
-		        callback :function(){
-		  				const that = this;
-		  				setTimeout(() => {
-							num = 5;
-							for (var i = 0; i < num; i++) {
-								data = fakedata()
-								document.querySelector(".mui-table-view").innerHTML +=
-								`
-								<li class="mui-table-view-cell mui-media">
-									<a href="javascript:;">
-										<img class="mui-media-object mui-pull-right" src="${data.img}">
-										<div class="mui-media-body">
-											${data.title}
-											<p class="mui-ellipsis">${data.desc}</p>
-										</div>
-									</a>
-								</li>
-								`;
-							}
-							that.endPullupToRefresh();
-						
-		  				},500)
-		  			}
-		      }
-		    }
-		  });
-	  })
-	  mui("body").on("tap","a",function(){
-		  window.location.href = this.href
-	  });
-	  mui.plusReady(function(){
-		  // var ls = plus.storage.getItem("spage");
-		  // if (!ls){
-			 //  console.log('none');
-			 //  plus.webview.open("welcome.html")
-		  // }
-	  })
+	  	mui.init();
+		mui.plusReady(function(){
+			console.log("plus is Radey");
+			var subPages = ['pages/1.html','pages/2.html','pages/3.html','pages/4.html']
+			var mb = plus.webview.currentWebview();
+			var styles = {
+				top:"45px",
+				bottom:"50px"
+			}
+			mui.each(subPages,function (index,element) {
+				var pages = plus.webview.create(subPages[index],subPages[index],styles);
+				mb.append(pages)
+			});
+			plus.webview.show(subPages[0],subPages[0],styles);
+			mui('.mui-bar-tab').on('tap','a',function(){
+				var href = this.getAttribute("href");
+				href -= 1;
+				console.log(href);
+				plus.webview.show(subPages[href])
+			})
+		})
 	</script>
 </body>
 </html>
